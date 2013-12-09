@@ -1,5 +1,6 @@
 Raindrop[] r= new Raindrop[50];
 Catcher c;
+
 void setup(){
   size(700,700);
   for(int i=0; i<r.length;i++){
@@ -8,12 +9,16 @@ void setup(){
   c= new Catcher();
 }
 void draw(){
-  background(0);
+  background(255);
   for(int i=0; i<r.length;i++){
     r[i].display();
     r[i].rain();
-  }
-  c.catcher();
+    c.update();
+  c.display();
+  c.catchdrop(r[i]);
 }
+}
+
+
   
     
