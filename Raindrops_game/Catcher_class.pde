@@ -1,22 +1,25 @@
-class Catcher{
+class Catcher {
   int d;
   PVector loc;
   int score=0;
-  Catcher(){
-    d= 50;
+  PImage img;
+  Catcher() {
+    d= 200;
     loc = new PVector(mouseX, height-d);
+    img= loadImage("tardis.jpg");
   }
-  void display(){
-    fill(255,130,0);
-    ellipse(loc.x,loc.y,d,d);
+  void display() {
+    imageMode(CENTER);
+    image(img, loc.x, loc.y, d, d+d/2);
   }
-  void update(){
-    loc.set(mouseX,height-d);
+  void update() { // neeeded to update position of catcher otherwise it would not move
+    loc.set(mouseX, height-d);
   }
-   void catchdrop(Raindrop drop){
-     if( loc.dist(drop.loc)<d/2+drop.d/2){
-       drop.loc.y=height*3;
-       score++;
-     }
-   }
+  void catchdrop(Raindrop drop) { //parameter of a specific raindrop){ 
+    if ( loc.dist(drop.loc)<d/2+drop.d/2) {
+      drop.loc.y=height*3; //when caught, a raindrop moves way of the screen
+      score++;
+    }
+  }
 }
+
