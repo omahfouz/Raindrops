@@ -17,7 +17,7 @@ class Catcher {
   }
   void catchdrop(Raindrop drop) { //parameter of a specific raindrop){ 
     if ( loc.dist(drop.loc)<d/2+drop.d/2) {
-      drop.loc.y=height*3; //when caught, a raindrop moves way of the screen
+      drop.loc.y=-height*3; //when caught, a raindrop moves way off the screen
       score++;
     }
   }
