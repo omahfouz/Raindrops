@@ -12,12 +12,16 @@ class Catcher {
     imageMode(CENTER);
     image(img, loc.x, loc.y, d, d+d/2);
   }
-  void update() { // neeeded to update position of catcher otherwise it would not move
+  void update() { // update position of catcher otherwise it would not move
     loc.set(mouseX, height-d);
   }
   void catchdrop(Raindrop drop) { //parameter of a specific raindrop){ 
     if ( loc.dist(drop.loc)<d/2+drop.d/2) {
+<<<<<<< HEAD
       drop.loc.y=-height*3; //when caught, a raindrop moves way off the screen
+=======
+      drop.loc.y=-height*3; //when caught, a raindrop moves up from the screen
+>>>>>>> origin/Start-and-Stop
       score++;
     }
   }
