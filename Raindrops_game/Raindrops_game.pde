@@ -6,16 +6,25 @@ int lives=12;
 int b;
 PImage img;
 PImage img2; 
-Raindrop[] r= new Raindrop[50];
+ArrayList<Raindrop> r= new ArrayList<Raindrop>();
 Catcher c;
+//PImage[] dr= new PImage[12];
+//int l=0;
 void setup() {
-  size(900, 700);
-  for (int i=0; i<r.length;i++) { // make processing run through the array of raindrops
-    r[i]= new Raindrop();
-  }
+  size(900, 500);
+  r.add(new Raindrop());
+  //for (int i=0; i<r.length;i++) { // make processing run through the array of raindrops
+    //r[i]= new Raindrop();
+ // }
+  
+ // for (l< dr.length){
+   // dr[l]= loadImage(l+".jpg");
+  //}
+    
   c= new Catcher();
   img= loadImage("feels.jpg");
   img2= loadImage("hospital.JPG");
+  img2.resize(width,height);
   button=false;
   b=100;
 }
@@ -48,16 +57,26 @@ void draw() {
 
     c.update();
     c.display();
-    for (int i=0; i<index; i++) { //makes 1 raindrop every time the index is increased
-      r[i].display();
-      r[i].rain();
-      c.catchdrop(r[i]); 
-      if (r[i].loc.y+r[i].d/2==height) {
+    r.add(new Raindrop());
+    for(int i=0;i<index;i++){
+      Raindrop rain =r.get(i);
+      rain.display();
+      rain.rain();
+      c.catchdrop(rain);
+    //for(l<dr.length){
+      //dr[i]=image(i+".jpg",c.loc.x,c.loc.y);
+    //}
+    
+      if (rain.loc.y+rain.d/2==height) {
         lives--;
+        r.remove(i);
+  //      l++;
+     
+        
       }//when catcher does not catch rain decrease lives by one
       
       if (lives==-1) {
-        i=r.length+200;
+        r.remove(i);
         image(img, width/2, height/2, width, height);
       }
       
@@ -65,6 +84,7 @@ void draw() {
         if (key=='r' || key=='R') {
           lives=12;
           c.score=0;
+         
         }
       }//if r is pressed the lives and score go to their original values but the game resumes as is
     }
